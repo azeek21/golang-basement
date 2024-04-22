@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Restaurants</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+  </head>
+  <body>
+    <small>total: {{ .places.paging.total }}</small>
+    <p>Results for: {{ .places.query }}</p>
+    <ul>
+      {{ range .places.items }}
+      <li>
+        <p>{{ .Name }}</p>
+        <p>{{ .Address }}</p>
+        <p>{{ .Phone }}</p>
+      </li>
+      {{ end }}
+    </ul>
+
+    <a href="./?pageNumber={{ .places.paging.prev }}&q={{ .places.query }}"
+      >prev</a
+    >
+    <a
+      href="./?pageNumber={{ .places.paging.pageNumber }}&q={{ .places.query }}"
+      >{{ .places.paging.pageNumber }}</a
+    >
+    <a href="./?pageNumber={{ .places.paging.next }}&q={{ .places.query }}"
+      >next</a
+    >
+  </body>
+</html>

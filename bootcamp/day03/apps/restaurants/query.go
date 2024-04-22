@@ -1,0 +1,3 @@
+package restaurants
+
+func QuerRestaurants() {}
