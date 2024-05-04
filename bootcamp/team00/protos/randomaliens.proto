@@ -1,0 +1,13 @@
+syntax="proto2";
+option go_package = "./transmitter";
+service Transmitter {
+  rpc StartTransmit(Empty) returns (stream Record);
+}
+
+message Record {
+  required string session_id = 1;
+  required double frequency = 2;
+  required string timestamp = 3;
+}
+
+message Empty {}
