@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v3.12.4
-// source: randomaliens.proto
+// source: transmitter.proto
 
 package transmitter
 
@@ -19,7 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Transmitter_StartTransmit_FullMethodName = "/Transmitter/StartTransmit"
+	Transmitter_StartTransmit_FullMethodName = "/transmitter.Transmitter/StartTransmit"
 )
 
 // TransmitterClient is the client API for Transmitter service.
@@ -122,7 +122,7 @@ func (x *transmitterStartTransmitServer) Send(m *Record) error {
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var Transmitter_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "Transmitter",
+	ServiceName: "transmitter.Transmitter",
 	HandlerType: (*TransmitterServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
@@ -132,5 +132,5 @@ var Transmitter_ServiceDesc = grpc.ServiceDesc{
 			ServerStreams: true,
 		},
 	},
-	Metadata: "randomaliens.proto",
+	Metadata: "transmitter.proto",
 }
