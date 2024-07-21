@@ -1,0 +1,22 @@
+version=1
+# commments are ignored
+# version must come before color declarations
+# color declarations must come before image
+# by default Alpha channel is set to 255
+
+scale=20
+colors
+o=0,0,0
+.=255,255,255
+end
+
+# image should start with word image and end with "end" as shown below
+
+image
+.....o.....
+....o.o....
+...ooooo...
+..o.....o..
+.o.......o.
+end
+# some other comment

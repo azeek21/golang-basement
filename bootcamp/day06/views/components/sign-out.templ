@@ -1,0 +1,12 @@
+package components
+
+templ SignOut() {
+	<div id="sign-out" class="m-auto p-4 border border-inherit rounded-lg flex flex-col gap-2">
+		<h1 class="text-xl">Are you sure you want to sign out of your account?</h1>
+		<p class="text-sm">* You will be signed out and redirected to home page</p>
+		<div id="sign-out-controls" class="ml-auto flex gap-4">
+			<a href="/" class="border border-inherit rounded-lg px-4 py-2 hover:border-blue-500 transition">No</a>
+			<button hx-post="/api/auth/sign-out" class="border border-inherit rounded-lg px-4 text-red-500 py-2 hover:border-red-700 transition">Yes</button>
+		</div>
+	</div>
+}

@@ -1,0 +1,26 @@
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+*.test
+
+*.out
+
+go.work
+go.work.sum
+
+.env*
+*/**/.env*
+
+./bin
+bin
+*/**/bin/
+bin/*
+
+
+# generated templ files
+*/**/*_templ.go
+**/*_templ.go
+./views/**/*_templ.go

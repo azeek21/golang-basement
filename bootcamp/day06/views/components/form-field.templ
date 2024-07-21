@@ -1,0 +1,27 @@
+package components
+
+type FormFieldProps struct {
+	Label        string
+	Name         string
+	Type         string
+	Placeholder  string
+	InitialValue string
+	Class        string
+	Required     bool
+	Disabled     bool
+	Pattern      string
+}
+
+templ FormField(props FormFieldProps) {
+	<label class="flex-col flex border-inherit" for={ props.Name }>
+		{ props.Label }:
+		<input
+			id={ props.Name }
+			class="border border-inherit focus:border-blue-200 rounded-lg px-2 py-1 text-base"
+			type={ props.Type }
+			name={ props.Name }
+			placeholder={ props.Placeholder }
+			value={ props.InitialValue }
+		/>
+	</label>
+}

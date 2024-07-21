@@ -1,0 +1,9 @@
+package layouts
+
+import "github.com/azeek21/blog/views/components"
+
+templ SignInPage() {
+	@components.BasePage("Blog - sign up", "Sign Up to start enjoying a huge amount of articles and publish your amazing work") {
+		@components.SignInForm()
+	}
+}

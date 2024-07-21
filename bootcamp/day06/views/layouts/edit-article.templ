@@ -1,0 +1,11 @@
+package layouts
+
+import "github.com/azeek21/blog/models"
+import "github.com/azeek21/blog/views/components"
+import "fmt"
+
+templ EditArticlePage(article models.Article) {
+	@components.BasePage(fmt.Sprintf("Editing: %.20s", article.Title), "Create and share articles from markdown") {
+		@components.ArticleForm(fmt.Sprintf("%v", article.ID), article.GetImage(), article.Title, article.Content, false)
+	}
+}

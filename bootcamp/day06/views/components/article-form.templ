@@ -1,0 +1,56 @@
+package components
+
+import "fmt"
+
+func getTextAreaStyles(visible bool) string {
+	base := "bg-inherit p-4 min-h-16 text-sm h-min-content h-full"
+	if !visible {
+		base += " hidden"
+	}
+	return base
+}
+
+func getTabButtonClass(active bool) string {
+	base := "w-full h-full flex items-center justify-center py-1"
+	if active {
+		base += " bg-blue-950 text-blue-100"
+	}
+	return base
+}
+
+templ MarkdownEditor(content string, preview string, showPreview bool) {
+	<div id="markdown-editor" class="border-inherit border rounded-lg flex flex-col overflow-hidden focus-within:border-blue-200 grow">
+		<div class="w-full border-b border-inherit flex">
+			<button hx-post="/api/markdown/show-edit" hx-include="#content" hx-swap="outerHTML" hx-target="#markdown-editor" type="button" class={ getTabButtonClass(!showPreview) }>Edit</button>
+			<button hx-post="/api/markdown/show-preview" hx-include="#content" hx-swap="outerHTML" hx-target="#markdown-editor" type="button" class={ getTabButtonClass(showPreview) }>Preview</button>
+		</div>
+		<textarea id="content" name="content" class={ getTextAreaStyles(!showPreview) } placeholder="Once upon a time, there was a lazy programmer...">
+			{ content }
+		</textarea>
+		@MarkdownView(content, showPreview)
+	</div>
+}
+
+templ ArticleForm(articleId, image, title, content string, showPreview bool) {
+	<div id="article-form" class="max-w-screen-lg border border-inherit rounded-lg mx-auto w-full p-4 min-w-[250px] relative transition-all">
+		<button type="button" class="absolute right-4 top-4" onclick="toggleFullScreenById('article-form')">Full Screen</button>
+		<form
+			if len(articleId) == 0 {
+				hx-post={ templ.EscapeString(fmt.Sprintf("/api/articles/%v", articleId)) }
+			} else {
+				hx-put={ templ.EscapeString(fmt.Sprintf("/api/articles/%v", articleId)) }
+			}
+			hx-trigger="submit"
+			hx-indicator="#article-form"
+			hx-swap="none"
+			class="flex flex-col gap-4 w-full border-inherit h-full"
+		>
+			<h1 class="text-3xl">Create new article</h1>
+			@FormField(FormFieldProps{Label: "Image", Name: "image", Type: "text", Placeholder: "External image url or link to an image", InitialValue: image})
+			@FormField(FormFieldProps{Label: "Title", Name: "title", Type: "text", Placeholder: "Some clickbait title LoL", InitialValue: title})
+			@FormField(FormFieldProps{Label: "Description", Name: "description", Type: "text", Placeholder: "Describe your article in a few words. Best when 2-3 sentences long.", InitialValue: title})
+			@MarkdownEditor(content, content, showPreview)
+			<button type="submit" class="submit border border-inherit rounded-lg py-1">Save</button>
+		</form>
+	</div>
+}

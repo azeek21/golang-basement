@@ -1,0 +1,13 @@
+package components
+
+templ SignUpForm() {
+	@AuthFormBase("/api/auth/sign-up") {
+		@FormField(FormFieldProps{Label: "Name", Name: "name", Type: "text", Placeholder: "The Great Walking Worm the 3rd", Required: true})
+		@FormField(FormFieldProps{Label: "Username", Name: "username", Type: "text", Placeholder: "walking_worm", Required: true})
+		@FormField(FormFieldProps{Label: "Email", Name: "email", Placeholder: "user@example.copm", Required: true})
+		@FormField(FormFieldProps{Label: "Password", Name: "password", Type: "password", Placeholder: "***", Required: true})
+		@FormField(FormFieldProps{Label: "Repeat password", Name: "repeat-password", Type: "password", Required: true, Placeholder: "***"})
+		<button type="submit" class="submit border rounded-lg py-1">Sign In</button>
+		<div class="text-sm pt-8">Already have an account ? - <a href="/sign-in" class="text-blue-500">Sign in</a></div>
+	}
+}

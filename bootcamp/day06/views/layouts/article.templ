@@ -1,0 +1,12 @@
+package layouts
+
+import (
+	"github.com/azeek21/blog/models"
+	"github.com/azeek21/blog/views/components"
+)
+
+templ ArticleByIdPage(article models.Article) {
+	@components.BasePage(article.Title, article.Content) {
+		@components.Article(article)
+	}
+}

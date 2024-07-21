@@ -1,0 +1,9 @@
+package layouts
+
+import "github.com/azeek21/blog/views/components"
+
+templ SignUpPage() {
+	@components.BasePage("Blog - Sign Up", "Sign up and start sharing your articles") {
+		@components.SignUpForm()
+	}
+}

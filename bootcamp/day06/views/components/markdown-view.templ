@@ -1,0 +1,17 @@
+package components
+
+import "github.com/azeek21/blog/pkg/utils"
+
+func getMarkdownViewBaseClass(visible bool) string {
+	base := "md-view p-4 overflow-auto"
+	if !visible {
+		base += " hidden"
+	}
+	return base
+}
+
+templ MarkdownView(rawData string, visible bool) {
+	<div id="md-view" class={ getMarkdownViewBaseClass(visible) }>
+		@utils.RenderMdToHTML(rawData)
+	</div>
+}

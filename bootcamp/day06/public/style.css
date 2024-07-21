@@ -1,0 +1,60 @@
+body {
+    min-height: 100svh;
+    height: 100%;
+}
+
+input {
+    background: inherit;
+}
+
+
+.alert-remove {
+    transition: 300ms;
+    transform: translateX(150%);
+}
+
+.alert-countdown {
+    height: 0px;
+    width: 100%;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    z-index: 10;
+}
+
+.alert-countdown.active {
+    height: 2px;
+    transition: none;
+    animation-name: downprogress;
+    animation-duration: 10s;
+    animation-fill-mode: forwards;
+    animation-timing-function: linear;
+}
+
+@keyframes downprogress {
+    0% {
+        width: 100%;
+    }
+    100% {
+        width: 0px;
+    }
+}
+
+
+/* Basic markdown styles */
+#md-view * {
+    /* reset everything inside markdown */
+    all: revert;
+}
+
+#md-view pre {
+    border-left: 1px solid;
+    padding-left: 0.5rem;
+}
+#md-view a {
+    color: skyblue;
+}
+
+#md-view a:visited {
+    color: #b05ffa;
+}

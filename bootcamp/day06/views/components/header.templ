@@ -1,0 +1,55 @@
+package components
+
+import "github.com/azeek21/blog/models"
+import "github.com/azeek21/blog/pkg/utils"
+
+func getUserProfileImgUrl(user *models.User) string {
+	if user.ImageUrl != nil {
+		return *user.ImageUrl
+	}
+	return "/public/logo.png"
+}
+
+templ userProfilePic() {
+	<a href="/articles/new" class="border rounded-lg py-1 px-2">New Post +</a>
+	<div id="user-profile-pic" class="group relative">
+		<a href="/profile">
+			if user, err := (utils.GetUser(ctx)); err == nil {
+				<img class="w-[30px] rounded-full border" src={ getUserProfileImgUrl(user) }/>
+			}
+		</a>
+		<div id="profile-controls" class="hidden group-hover:visible min-w-max p-2 gap-2 group-hover:flex flex-col absolute top-full right-0 border border-inherit backdrop-blur-sm rounded-lg">
+			<a href="/sign-out" class="border rounded-lg py-1 px-2">Sign out</a>
+			<a href="/settings" class="border rounded-lg py-1 px-2">Settings</a>
+		</div>
+	</div>
+}
+
+templ Header() {
+	<header
+		class="w-full border-b border-inherit px-4 py-2 flex gap-2 h-min items-center sticky top-0 backdrop-filter backdrop-blur-lg z-10"
+		hx-boost="true"
+	>
+		<a href="/">
+			<img src="/public/logo.png" class="h-[50px] w-auto object-fit" alt="SiteLogo"/>
+		</a>
+		<nav class="ml-auto">
+			<ul class="flex gap-4 items-center">
+				<li>
+					<a href="/trending" class="hover:border-b border-blue-300 transition p-1">Trending</a>
+				</li>
+				<li>
+					<a href="/categories" class="hover:border-b border-blue-300 transition p-1">All Categories</a>
+				</li>
+				<li>
+					<a href="/authors" class="hover:border-b border-blue-300 transition p-1">Authors</a>
+				</li>
+			</ul>
+		</nav>
+		if utils.IsAuthed(ctx) {
+			@userProfilePic()
+		} else {
+			<a href="/sign-in" class="border-inherit border rounded-lg py-1 px-2">Sign in</a>
+		}
+	</header>
+}

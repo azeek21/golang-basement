@@ -1,0 +1,19 @@
+package components
+
+templ BasePage(title, description string) {
+	<!DOCTYPE html>
+	<html lang="en">
+		<head>
+			@DefaultHead(title, description)
+			<script defer src="/public/index.js" type="text/javascript"></script>
+		</head>
+		<body class="bg-gray-950 border-gray-600 text-gray-200 flex flex-col relative min-w-[280px] min-h-svh h-full">
+			@Header()
+			<div class="w-full h-full p-4 border-inherit flex-grow flex relative">
+				{ children... }
+			</div>
+			@Footer()
+			<div id="alerts" hx-swap-oob="beforeend" class="fixed bottom-4 right-4 min-w-[250px] w-1/12 h-auto flex flex-col gap-2 z-10"></div>
+		</body>
+	</html>
+}

@@ -1,0 +1,48 @@
+package layouts
+
+import "github.com/azeek21/blog/views/components"
+import "github.com/azeek21/blog/models"
+import "github.com/azeek21/blog/pkg/utils"
+import "fmt"
+
+templ IndexPage(articles []models.Article, paging *models.PagingOutGoing) {
+	@components.BasePage("Azeek's blog - Home", "Share your experiences and thoughts word with the whole world") {
+		if len(articles) > 0 {
+			<div id="latest-articles" class="w-full">
+				<div id="latest-articles-controls" hx-boost="true" class="flex items-end justify-between pb-8">
+					<h1 class="text-4xl">Latest articles</h1>
+					if paging != nil {
+						<div id="latest-articles-paging" class="flex flex-row gap-1">
+							if paging.HasPreviousPage() {
+								<a href={ templ.SafeURL("/" + paging.GetPreviousPageUrlParamsAsString()) } class="border border-inherit rounded-l-lg rounded-r-sm px-1">Prev</a>
+							}
+							<p class="rounded-sm border border-inherit px-1">{ fmt.Sprintf("%d", paging.Page) }</p>
+							if paging.HasNextPage() {
+								<a href={ templ.SafeURL("/" + paging.GetNextPageUrlParamsAsString()) } class="border border-inherit rounded-l-sm rounded-r-lg px-1">Next</a>
+							}
+						</div>
+					}
+				</div>
+				<div class="gap-4 grid sm:grid-cols-1 lg:grid-cols-3 2xl:grid-cols-5">
+					for _, article := range articles {
+						@components.ArticlePreview(article)
+					}
+				</div>
+			</div>
+		} else {
+			<div id="no-articles-fallback" class="flex gap-4 flex-col" hx-boost="true">
+				<h1 class="text-4xl">
+					Whoops ¯\_(ツ)_/¯
+				</h1>
+				<h1 class="text-4xl">
+					Looks like we are out of articles right now
+				</h1>
+				<p class="text-xl">Be the first to publish an article </p>
+				if utils.IsAuthed(ctx) {
+					<a href="/articles/new">Write an article now!</a>
+				}
+				<a href="/sign-up" class="text-blue-500">Sign up now and pubish an article</a>
+			</div>
+		}
+	}
+}

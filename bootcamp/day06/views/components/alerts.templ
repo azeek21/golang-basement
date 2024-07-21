@@ -1,0 +1,33 @@
+package components
+
+import "github.com/azeek21/blog/models"
+import "fmt"
+
+// level is one of ALERT_LEVELS
+func GetAlertItemBaseClasses(level string) string {
+	baseClasses := "relative w-full duration-300 transition-all overflow-clip backdrop-blur-sm backdrop:blur p-2 border rounded-lg bg-opacity-30 text-sm h-min-content max-h-[4.5rem] focus:max-h-[70svh] focus:overflow-scroll"
+	if level == models.ALERT_LEVELS.ERROR {
+		baseClasses += " bg-red-900 border-red-900"
+	} else if level == models.ALERT_LEVELS.WARNING {
+		baseClasses += " bg-yellow-400 border-yellow-400"
+	} else if level == models.ALERT_LEVELS.SUCCESS {
+		baseClasses += " bg-green-800 border-green-500"
+	} else {
+		baseClasses += " border-blue-800"
+	}
+	return baseClasses
+}
+
+templ AlertItem(alertLevel string, content string) {
+	<div id={ templ.EscapeString(fmt.Sprintf("alert-item alert-%v", alertLevel)) } tabindex="0" class={ GetAlertItemBaseClasses(alertLevel) }>
+		<div id="alert-content" class="w-full h-full">{ content }</div>
+		<button onclick="cancelAlert(event)" class="text-xl fixed bottom-0 right-1 text-red-700 z-10">x</button>
+		<div class="alert-countdown bg-blue-500"></div>
+	</div>
+}
+
+templ AlertsContainer(alertLevel string, content string) {
+	<div id="alerts" hx-swap-oob="beforeend" class="fixed bottom-4 right-4 min-w-[250px] w-1/12 h-auto flex flex-col gap-2 z-10">
+		@AlertItem(alertLevel, content)
+	</div>
+}

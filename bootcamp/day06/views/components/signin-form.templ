@@ -1,0 +1,10 @@
+package components
+
+templ SignInForm() {
+	@AuthFormBase("/api/auth/sign-in") {
+		@FormField(FormFieldProps{Label: "Email", Name: "email", Type: "email", Placeholder: "user@example.com"})
+		@FormField(FormFieldProps{Label: "Password", Name: "password", Type: "password", Placeholder: "*******"})
+		<button type="submit" class="submit border rounded-lg py-1">Sign In</button>
+		<div class="text-sm pt-8">Don't have an account ? - <a href="/sign-up" class="text-blue-500">Sign up</a></div>
+	}
+}

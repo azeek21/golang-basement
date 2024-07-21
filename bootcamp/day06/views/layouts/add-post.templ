@@ -1,0 +1,12 @@
+package layouts
+
+templ AddPost() {
+	<div id="add-post-container" class="max-w-screen-sm border rounded-l">
+		<div></div>
+		<form class="add-post" hx-post="/api/articles" hx-swap="none">
+			<input name="title" type="text" placeholder="Why htmx and golang is better than Express and Reactjs"/>
+			<textarea placeholder="Reason number one:\n..."></textarea>
+			<button id="create-post" type="submit">Save Article </button>
+		</form>
+	</div>
+}
