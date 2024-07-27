@@ -1,9 +1,11 @@
-package main
+package ex00_test
 
 import (
 	"fmt"
-	"github.com/stretchr/testify/assert"
+	"moneybag/ex00"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
 type TestCase struct {
@@ -98,7 +100,7 @@ func asdf(t *testing.T) {
 	// Act
 	for n, tCase := range testCases {
 		t.Run(fmt.Sprintf("%d-%s", n+1, tCase.Desc), func(t *testing.T) {
-			actual := MinCoins(tCase.Target, tCase.Options)
+			actual := ex00.MinCoins(tCase.Target, tCase.Options)
 			// assert
 			assert.ElementsMatch(t, actual, tCase.Exp)
 		})
@@ -114,9 +116,19 @@ func TestMinCoins2(t *testing.T) {
 	// Act
 	for n, tCase := range testCases {
 		t.Run(fmt.Sprintf("%d-%s", n+1, tCase.Desc), func(t *testing.T) {
-			actual := MinCoins2(tCase.Target, tCase.Options)
+			actual := ex00.MinCoins2(tCase.Target, tCase.Options)
 			// assert
 			assert.ElementsMatch(t, actual, tCase.Exp)
 		})
 	}
+}
+
+func ExampleMinCoins() {
+	ex00.MinCoins2(13, []int{5, 10, 1})
+	//Output: 1,1,1,1,1,1,1,1,1,1, 1, 1, 1 (13 * 1)
+}
+
+func ExampleMinCoins2() {
+	ex00.MinCoins2(13, []int{5, 10, 1})
+	//Output: 10, 1, 1,
 }

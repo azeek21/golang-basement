@@ -1,0 +1,18 @@
+File: ex01.test
+Type: cpu
+Time: Jul 27, 2024 at 6:30pm (MSK)
+Duration: 5.02s, Total samples = 5.07s (101.04%)
+Showing nodes accounting for 4.63s, 91.32% of 5.07s total
+Dropped 75 nodes (cum <= 0.03s)
+Showing top 10 nodes out of 41
+      flat  flat%   sum%        cum   cum%
+     1.30s 25.64% 25.64%      1.30s 25.64%  moneybag/ex00.qsDoer
+     1.17s 23.08% 48.72%      1.63s 32.15%  moneybag/ex00.MinCoins2Optimized
+     0.88s 17.36% 66.07%      1.83s 36.09%  moneybag/ex00.MinCoins (inline)
+     0.38s  7.50% 73.57%      0.85s 16.77%  runtime.mallocgc
+     0.26s  5.13% 78.70%      0.26s  5.13%  moneybag/ex00.IsSorted (inline)
+     0.23s  4.54% 83.23%      1.15s 22.68%  runtime.growslice
+     0.22s  4.34% 87.57%      0.22s  4.34%  runtime.nextFreeFast (inline)
+     0.09s  1.78% 89.35%      1.92s 37.87%  moneybag/ex01_test.BenchmarkMinCoins
+     0.06s  1.18% 90.53%      0.06s  1.18%  runtime.memclrNoHeapPointers
+     0.04s  0.79% 91.32%      0.04s  0.79%  runtime.deductAssistCredit

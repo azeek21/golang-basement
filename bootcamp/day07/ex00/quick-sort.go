@@ -1,4 +1,14 @@
-package main
+package ex00
+
+// Checks if array is sorted
+func IsSorted(arr []int) bool {
+	for i := len(arr) - 1; i > 0; i-- {
+		if arr[i-1] > arr[i] {
+			return false
+		}
+	}
+	return true
+}
 
 func qsDoer(arr []int, l, h int) {
 	if l < h {
@@ -16,6 +26,9 @@ func qsDoer(arr []int, l, h int) {
 	}
 }
 
+// In place QuickSort based on divide an conquer algorithm
+// NOTE: it sorts the slice in place which means arr get's modified.
+// use with caution
 func QuickSort(arr []int) []int {
 	qsDoer(arr, 0, len(arr)-1)
 	return arr

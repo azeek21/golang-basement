@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"moneybag/ex00"
 )
 
 func resultPrinter(name string, tar int, options []int, res []int) {
@@ -14,8 +15,8 @@ func main() {
 	optsForMine := make([]int, len(options))
 	copy(optsForMine, options)
 
-	resGiven := MinCoins(tar, options)
-	resMine := MinCoins2(tar, optsForMine)
+	resGiven := ex00.MinCoins(tar, options)
+	resMine := ex00.MinCoins2(tar, optsForMine)
 	resultPrinter("GIVEN", tar, options, resGiven)
 	resultPrinter("MINE", tar, options, resMine)
 }
