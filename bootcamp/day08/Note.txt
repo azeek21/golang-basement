@@ -1,0 +1,7 @@
+ex00: working with unsafe pointeres
+ex01: reflection
+ex02: calling c functions from golang. 
+
+In ex02 I was supposed to use the given source code in ../materials/window.zip but the code works only on MacOs. I'm on Linux.
+And my desktop enviroment is X11 so I just rewrote the same code for x11 in C and called it from my go program :)
+
