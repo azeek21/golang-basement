@@ -1,8 +1,6 @@
 package server
 
 import (
-	"fmt"
-
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,8 +20,8 @@ func NewServer() Server {
 	}
 }
 
-func (s server) Start(port string) error {
-	return s.engine.Run(fmt.Sprintf("localhost:%s", port))
+func (s server) Start(address string) error {
+	return s.engine.Run(address)
 }
 
 func (s server) GetEngine() *gin.Engine {
