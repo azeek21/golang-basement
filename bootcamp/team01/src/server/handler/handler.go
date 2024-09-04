@@ -28,9 +28,9 @@ func (h handler) RegisterDefaultRoutes(root *gin.RouterGroup) error {
 
 	storageRoute := root.Group("/storage")
 	{
-		idValidatorMiddleware := middleware.ParamValidatorMiddleware("key", utils.IsValidUUID)
+		idValidatorMiddleware := middleware.ParamValidatorMiddleware("key", utils.IsUUIDValid)
 		storageRoute.GET("/:key", idValidatorMiddleware, h.GetFromStorage)
-		storageRoute.POST("/", h.SetToStorage) // NOTE: this is both create and update a.k.a UPSERT
+		storageRoute.POST("", h.SetToStorage) // NOTE: this is both create and update a.k.a UPSERT
 		storageRoute.DELETE("/:key", idValidatorMiddleware, h.DeleteFromStorage)
 	}
 

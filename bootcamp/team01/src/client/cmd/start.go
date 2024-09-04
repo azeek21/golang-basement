@@ -23,13 +23,15 @@ func main() {
 	// SETUP
 	tasksOut := make(chan tasks.Task, 1)
 	front := tasks.NewFrontend(tasksOut)
-	front.Start()
+	back := tasks.NewRunner(tasksOut)
 
-	_ = client.NewClient(
+	_, _ = client.NewClient(
 		client.WithPort(*port),
 		client.WithHost(*host),
 		client.WithTimeout(time.Second*2),
 	)
 
 	// RUN
+	go front.Start()
+	back.Start()
 }

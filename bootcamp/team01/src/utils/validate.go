@@ -4,6 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"strconv"
+
+	"github.com/google/uuid"
 )
 
 const PORT_MIN = 8000
@@ -27,7 +29,7 @@ func IsPortValid(port string) error {
 	return nil
 }
 
-func IsValidUUID(str string) error {
+func IsUUIDValid(str string) error {
 	// TODO: implement uuid check
-	return nil
+	return uuid.Validate(str)
 }
