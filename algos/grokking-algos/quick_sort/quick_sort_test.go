@@ -1,7 +1,6 @@
 package quicksort
 
 import (
-	"fmt"
 	"grogos/shared"
 	"testing"
 
@@ -43,10 +42,10 @@ func TestQuickSort(t *testing.T) {
 		},
 	}
 
-	for i, tcase := range cases {
-		t.Run(fmt.Sprintf("%v: %s\n", i, tcase.desc), func(t *testing.T) {
+	for _, tcase := range cases {
+		t.Run("simpel test for quick sort", func(t *testing.T) {
 			QuickSort(tcase.arg, 0, len(tcase.arg)-1)
-			assert.Equal(t, tcase.exp, tcase.arg)
+			assert.Equal(t, tcase.exp, tcase.arg, tcase.desc)
 		})
 	}
 }
